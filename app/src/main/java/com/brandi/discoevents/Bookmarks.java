@@ -1,23 +1,23 @@
-
 /**
  * Created by DanielJimenez on 11/26/17.
  */
 package com.brandi.discoevents;
 
-import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckBox;
+import android.widget.AdapterView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import static com.brandi.discoevents.R.id.ListBookmarkedEvents;
 
 public class Bookmarks extends AppCompatActivity {
 
-    globals g = globals.getInstance();
-
-    // Intent used for the tag search button, this is used in the onClick listener
+globals g = globals.getInstance();  // Global Variables
+  
+ // Intent used for the tag search button, this is used in the onClick listener
     private Intent intent;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -44,51 +44,35 @@ public class Bookmarks extends AppCompatActivity {
             return false;
         }
     };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tag_search_checkboxes);
+        setContentView(R.layout.bookmarks);
+      
+        if(g.getBookmarks()==null) {
+            Toast.makeText(getApplicationContext(), "null", Toast.LENGTH_SHORT).show();
+        }
+      
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+      
+        // Make array adapter to show results
+        ListView listview = (ListView) findViewById(ListBookmarkedEvents);
+        ListAdapter eventAdapter = new CustomAdapter(this, g.getBookmarks());
+        listview.setAdapter(eventAdapter);
+    
+        listview.setOnItemClickListener(
+                new AdapterView.OnItemClickListener(){
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        // This is the code that allows the tagSearch button to take the app to the tagSearchCheckboxes class/fragment
+                        EventData data = (EventData) parent.getItemAtPosition(position);
+                        g.deleteBookmark(data);
+                        Toast.makeText(getApplicationContext(), "Removed Event to Bookmark", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
     }
-
-    /**
-     *Description: Class for the check boxes that determines which boxes have been checked
-     *             and sets a variable for them if they have been checked.
-     */
-    public void onCheckboxClicked(View view){
-        //Is the view now checked?
-        boolean checked = ((CheckBox) view).isChecked();
-
-        //Check which checkbox was clicked
-        switch(view.getId()){
-            case R.id.checkCS:
-                if (checked) // Set a variable to true that way I can find out which class needs to be displayed in the next view
-                    g.setCS(true); // Set equal to true
-                else
-                    g.setCS(false); // Set equal to false
-                break;
-            case R.id.checkBoxCE:
-                if(checked) //Set a variable to true that way I can find out which class needs to be displayed in the next view
-                    g.setCE(true); // Set equal to true
-                else // Not much to do
-                    g.setCE(false); // Set equal to false
-                break;
-            case R.id.checkBoxEE:
-                if(checked) //Set a variable to true that way I can find out which class needs to be displayed in the next view
-                    g.setEE(true); // Set equal to true
-                else // Not much to do
-                    g.setEE(false); // Set equal to false
-                break;
-            case R.id.checkBoxDept:
-                if(checked) //Set a variable to true that way I can find out which class needs to be displayed in the next view
-                    g.setDEPT(true); // Set equal to true
-                else // Not much to do
-                    g.setDEPT(false); // Set equal to false
-                break;
-        }
-    }
-
-
 }
-

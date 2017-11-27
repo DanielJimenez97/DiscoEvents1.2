@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearPopUp"
+    android:id="@+id/LinearBookmarkedEHeader"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/popUpGrey"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textHeader"
+        android:id="@+id/textBookmarkedEvents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Events on "
+        android:text="Your Bookmarked Events:"
         android:textSize="25sp" />
 
     <ListView
-        android:id="@+id/listPopWindow"
+        android:id="@+id/ListBookmarkedEvents"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-</LinearLayout>
 
-    <!--android:background="@android:color/holo_green_dark" -->
+</LinearLayout>
