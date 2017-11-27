@@ -1,3 +1,7 @@
+
+/**
+ * Created by DanielJimenez on 11/26/17.
+ */
 package com.brandi.discoevents;
 
 import android.content.Intent;
@@ -9,7 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 
-public class tagSearchCheckboxes extends AppCompatActivity {
+public class Bookmarks extends AppCompatActivity {
 
     globals g = globals.getInstance();
 
@@ -23,17 +27,16 @@ public class tagSearchCheckboxes extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     //sends back to home
-                    intent = new Intent(tagSearchCheckboxes.this, MainActivity.class);
+                    intent = new Intent(Bookmarks.this, MainActivity.class);
                     startActivity(intent);
                     return true;
                 case R.id.navigation_dashboard:
                     //sends to allEvents
-                    intent = new Intent(tagSearchCheckboxes.this, allEvents.class);
+                    intent = new Intent(Bookmarks.this, allEvents.class);
                     startActivity(intent);
                     return true;
                 case R.id.navigation_notifications:
-                    intent = new Intent(tagSearchCheckboxes.this, Bookmarks.class);
-                    startActivity(intent);
+                    //does nothing because is in bookmarks
                     return true;
             }
             return false;
@@ -44,7 +47,6 @@ public class tagSearchCheckboxes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag_search_checkboxes);
     }
-
 
     /**
      *Description: Class for the check boxes that determines which boxes have been checked
@@ -83,9 +85,6 @@ public class tagSearchCheckboxes extends AppCompatActivity {
         }
     }
 
-    // This is the code that allows the tagSearch button to take the app to the tagSearchCheckboxes class/fragment
-    public void goTagEventList(View view) {
-        intent = new Intent(tagSearchCheckboxes.this, TagEventList.class);
-        startActivity(intent);
-    }
+
 }
+

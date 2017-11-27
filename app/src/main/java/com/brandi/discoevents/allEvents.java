@@ -1,3 +1,8 @@
+
+/**
+ * Created by DanielJimenez on 11/26/17.
+ */
+
 package com.brandi.discoevents;
 
 import android.content.Intent;
@@ -9,12 +14,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 
-public class tagSearchCheckboxes extends AppCompatActivity {
+public class allEvents extends AppCompatActivity {
 
     globals g = globals.getInstance();
 
     // Intent used for the tag search button, this is used in the onClick listener
     private Intent intent;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -23,27 +29,29 @@ public class tagSearchCheckboxes extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     //sends back to home
-                    intent = new Intent(tagSearchCheckboxes.this, MainActivity.class);
-                    startActivity(intent);
+                    intent = new Intent(allEvents.this, MainActivity.class);
+                    allEvents.this.startActivity(intent);
                     return true;
                 case R.id.navigation_dashboard:
-                    //sends to allEvents
-                    intent = new Intent(tagSearchCheckboxes.this, allEvents.class);
-                    startActivity(intent);
+                    //does nothing because is in allEvents
                     return true;
                 case R.id.navigation_notifications:
-                    intent = new Intent(tagSearchCheckboxes.this, Bookmarks.class);
+                    intent = new Intent(allEvents.this, Bookmarks.class);
                     startActivity(intent);
                     return true;
             }
             return false;
         }
+
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag_search_checkboxes);
     }
+
+
 
 
     /**
@@ -80,12 +88,7 @@ public class tagSearchCheckboxes extends AppCompatActivity {
                 else // Not much to do
                     g.setDEPT(false); // Set equal to false
                 break;
-        }
-    }
 
-    // This is the code that allows the tagSearch button to take the app to the tagSearchCheckboxes class/fragment
-    public void goTagEventList(View view) {
-        intent = new Intent(tagSearchCheckboxes.this, TagEventList.class);
-        startActivity(intent);
+        }
     }
 }

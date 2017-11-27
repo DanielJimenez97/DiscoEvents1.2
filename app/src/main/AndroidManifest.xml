@@ -25,6 +25,8 @@
             android:name=".Pop"
             android:theme="@style/AppTheme.CustomTheme" />
         <activity android:name=".tagSearchCheckboxes" />
+        <activity android:name=".allEvents"/>
+        <activity android:name=".Bookmarks"/>
 
         <activity android:name=".TagEventList">
         </activity>
