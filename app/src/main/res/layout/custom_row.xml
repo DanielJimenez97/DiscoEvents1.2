@@ -10,7 +10,8 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
-        android:text="Event Name" />
+        android:text="Event Name"
+        android:textSize="26sp"/>
 
     <TextView
         android:id="@+id/textOrgName"

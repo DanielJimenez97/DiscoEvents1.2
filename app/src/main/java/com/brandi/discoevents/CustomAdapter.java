@@ -35,23 +35,23 @@ class CustomAdapter extends ArrayAdapter<EventData>{
         // Get a reference to everything
         String OrgName = getItem(position).getOrgName();
         TextView o_Name_Text = (TextView) customView.findViewById(R.id.textOrgName);
-        o_Name_Text.setText(OrgName);
+        o_Name_Text.setText("Organization: " + OrgName);
 
         String EventName= getItem(position).getEventName();
         TextView e_Name_Text = (TextView) customView.findViewById(R.id.textEventName);
-        e_Name_Text.setText(EventName);
+        e_Name_Text.setText("Event: " + EventName);
 
         String EventDesc= getItem(position).getEventDesc();
         TextView e_Desc_Text = (TextView) customView.findViewById(R.id.textEventDesc);
-        e_Desc_Text.setText(EventDesc);
+        e_Desc_Text.setText("Description: " + EventDesc);
 
         String EventDate= getItem(position).getEventDate();
         TextView e_Date_Text = (TextView) customView.findViewById(R.id.textEventDate);
-        e_Date_Text.setText(EventDate);
+        e_Date_Text.setText("Date: " + EventDate);
 
         String EventLocation= getItem(position).getEventLocation();
         TextView e_Loca_Text = (TextView) customView.findViewById(R.id.textEventLocation);
-        e_Loca_Text.setText(EventLocation);
+        e_Loca_Text.setText("Location: " + EventLocation);
 
         return customView;
     }
