@@ -22,7 +22,7 @@ public class TagEventList extends AppCompatActivity {
 
     globals g = globals.getInstance();
 
-    private static final String TAG = "Main Activity Data";
+    private static final String TAG = "TagEventList Data";
 
     // This will hold our collection of com.brandi.disco events.EventData Objects that will be printed to the screen
     final ArrayList<EventData> events = new ArrayList<EventData>();
