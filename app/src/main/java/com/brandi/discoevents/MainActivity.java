@@ -1,5 +1,6 @@
 package com.brandi.discoevents;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     // Intent used for the tag search button, this is used in the onClick listener
     private Intent intent;
     //private TextView mTextMessage;
+    //ActionBar actionBar = getActionBar();
+    //actionBar.setIcon(R.drawable.discoeventslogo);
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -35,10 +38,12 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_dashboard:
                     intent = new Intent(MainActivity.this, allEvents.class);
                     startActivity(intent);
+                    finish();
                     return true;
                 case R.id.navigation_notifications:
                     intent = new Intent(MainActivity.this, Bookmarks.class);
                     startActivity(intent);
+                    finish();
                     return true;
             }
             return false;

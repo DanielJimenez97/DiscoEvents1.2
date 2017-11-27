@@ -15,21 +15,54 @@ import static com.brandi.discoevents.R.id.ListBookmarkedEvents;
 
 public class Bookmarks extends AppCompatActivity {
 
-    globals g = globals.getInstance();  // Global Variables
+globals g = globals.getInstance();  // Global Variables
+  
+ // Intent used for the tag search button, this is used in the onClick listener
+    private Intent intent;
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    //sends back to home
+                    intent = new Intent(Bookmarks.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                case R.id.navigation_dashboard:
+                    //sends to allEvents
+                    intent = new Intent(Bookmarks.this, allEvents.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                case R.id.navigation_notifications:
+                    //does nothing because is in bookmarks
+                    return true;
+            }
+            return false;
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bookmarks);
+      
         if(g.getBookmarks()==null) {
             Toast.makeText(getApplicationContext(), "null", Toast.LENGTH_SHORT).show();
         }
-
+      
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+      
         // Make array adapter to show results
         ListView listview = (ListView) findViewById(ListBookmarkedEvents);
         ListAdapter eventAdapter = new CustomAdapter(this, g.getBookmarks());
         listview.setAdapter(eventAdapter);
-
+    
         listview.setOnItemClickListener(
                 new AdapterView.OnItemClickListener(){
                     @Override

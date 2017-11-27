@@ -25,8 +25,31 @@ import static com.brandi.discoevents.R.id.ListAllEvents;
 
 public class allEvents extends AppCompatActivity {
 
-    globals g = globals.getInstance();
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    //sends back to home
+                    intent = new Intent(allEvents.this, MainActivity.class);
+                    allEvents.this.startActivity(intent);
+                    finish();
+                    return true;
+                case R.id.navigation_dashboard:
+                    //does nothing because is in allEvents
+                    return true;
+                case R.id.navigation_notifications:
+                    intent = new Intent(allEvents.this, Bookmarks.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+            }
+            return false;
+        }
+
+    g = globals.getInstance();
     private static final String TAG = "TagEventList Data";
+
 
     // This will hold our collection of com.brandi.disco events.EventData Objects that will be printed to the screen
     final ArrayList<EventData> events = new ArrayList<EventData>();
@@ -37,8 +60,11 @@ public class allEvents extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.all_events);
 
+        setContentView(R.layout.all_events);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+      
         // Get a reference to our Events
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference();
@@ -59,7 +85,7 @@ public class allEvents extends AppCompatActivity {
                 }
                 showListNow();
             }
-
+          
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Display a toast Error message
@@ -85,7 +111,7 @@ public class allEvents extends AppCompatActivity {
                 }
         );
     }
-
+  
     private void showListNow() {
         // Make array adapter to show results
         ListView listview = (ListView) findViewById(ListAllEvents);
