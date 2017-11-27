@@ -25,15 +25,18 @@ public class tagSearchCheckboxes extends AppCompatActivity {
                     //sends back to home
                     intent = new Intent(tagSearchCheckboxes.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                     return true;
                 case R.id.navigation_dashboard:
                     //sends to allEvents
                     intent = new Intent(tagSearchCheckboxes.this, allEvents.class);
                     startActivity(intent);
+                    finish();
                     return true;
                 case R.id.navigation_notifications:
                     intent = new Intent(tagSearchCheckboxes.this, Bookmarks.class);
                     startActivity(intent);
+                    finish();
                     return true;
             }
             return false;
@@ -43,6 +46,8 @@ public class tagSearchCheckboxes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag_search_checkboxes);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
 

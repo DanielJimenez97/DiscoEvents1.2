@@ -29,11 +29,13 @@ public class Bookmarks extends AppCompatActivity {
                     //sends back to home
                     intent = new Intent(Bookmarks.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                     return true;
                 case R.id.navigation_dashboard:
                     //sends to allEvents
                     intent = new Intent(Bookmarks.this, allEvents.class);
                     startActivity(intent);
+                    finish();
                     return true;
                 case R.id.navigation_notifications:
                     //does nothing because is in bookmarks
@@ -46,6 +48,8 @@ public class Bookmarks extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag_search_checkboxes);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
     /**
