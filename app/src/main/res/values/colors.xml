@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="lightBackground">#e5e7e9</color>
-    <color name="darkerGrey">#95a5a6</color>
+    <color name="darkerGrey">#e0e2e1</color>
+    <color name="popUpGrey">#c5c5c5</color>
     <color name="buttonColor">#8cf078</color>
 </resources>

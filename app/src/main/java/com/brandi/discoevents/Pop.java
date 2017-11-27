@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.util.Log;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -92,6 +93,19 @@ public class Pop extends Activity {
         ListView listview = (ListView) findViewById(listPopWindow);
         ListAdapter eventAdapter = new CustomAdapter(this, events);
         listview.setAdapter(eventAdapter);
+
+
+        listview.setOnItemClickListener(
+                new AdapterView.OnItemClickListener(){
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        // This is the code that allows the tagSearch button to take the app to the tagSearchCheckboxes class/fragment
+                        EventData data = (EventData) parent.getItemAtPosition(position);
+                        g.addBookmarks(data);
+                        Toast.makeText(getApplicationContext(), "Added Event to Bookmark", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
     }
 
     private void showListNow() {

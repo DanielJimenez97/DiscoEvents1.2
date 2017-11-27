@@ -7,6 +7,8 @@ package com.brandi.discoevents;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -28,6 +30,9 @@ public class allEvents extends AppCompatActivity {
 
     // This will hold our collection of com.brandi.disco events.EventData Objects that will be printed to the screen
     final ArrayList<EventData> events = new ArrayList<EventData>();
+
+    // Event data variable that has information of the event that was just clicked
+    EventData ClickData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +72,18 @@ public class allEvents extends AppCompatActivity {
         ListView listview = (ListView) findViewById(ListAllEvents);
         ListAdapter eventAdapter = new CustomAdapter(this, events);
         listview.setAdapter(eventAdapter);
+
+        listview.setOnItemClickListener(
+                new AdapterView.OnItemClickListener(){
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        // This is the code that allows the tagSearch button to take the app to the tagSearchCheckboxes class/fragment
+                        EventData data = (EventData) parent.getItemAtPosition(position);
+                        g.addBookmarks(data);
+                        Toast.makeText(getApplicationContext(), "Added Event to Bookmark", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
     }
 
     private void showListNow() {
