@@ -38,10 +38,12 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_dashboard:
                     intent = new Intent(MainActivity.this, allEvents.class);
                     startActivity(intent);
+                    finish();
                     return true;
                 case R.id.navigation_notifications:
                     intent = new Intent(MainActivity.this, Bookmarks.class);
                     startActivity(intent);
+                    finish();
                     return true;
             }
             return false;

@@ -31,6 +31,7 @@ public class allEvents extends AppCompatActivity {
                     //sends back to home
                     intent = new Intent(allEvents.this, MainActivity.class);
                     allEvents.this.startActivity(intent);
+                    finish();
                     return true;
                 case R.id.navigation_dashboard:
                     //does nothing because is in allEvents
@@ -38,6 +39,7 @@ public class allEvents extends AppCompatActivity {
                 case R.id.navigation_notifications:
                     intent = new Intent(allEvents.this, Bookmarks.class);
                     startActivity(intent);
+                    finish();
                     return true;
             }
             return false;
@@ -49,6 +51,8 @@ public class allEvents extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag_search_checkboxes);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
 
